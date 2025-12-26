@@ -1,5 +1,7 @@
 # Skills
 
+English | [中文](README.zh-CN.md)
+
 A collection of custom skills for Claude Code that extend Claude's capabilities with specialized knowledge, workflows, and tool integrations.
 
 ## About Skills
