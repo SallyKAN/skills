@@ -1,0 +1,41 @@
+# Paper Translator 配置文件
+# 复制此文件为 config.local.yaml 并填入你的API密钥
+
+# LLM配置
+llm:
+  provider: "anthropic"  # anthropic / openai
+  model: "claude-sonnet-4-20250514"
+  api_key: "${ANTHROPIC_API_KEY}"  # 从环境变量读取
+  max_tokens: 8192
+
+# 图片生成配置（通过 OpenAI 兼容 API）
+image:
+  model: "google/gemini-2.0-flash-preview-image-generation"
+  default_params:
+    width: 1024
+    height: 768
+
+# 微信公众号配置
+wechat:
+  app_id: "${WECHAT_APP_ID}"
+  app_secret: "${WECHAT_APP_SECRET}"
+  # access_token 会自动获取和缓存
+
+# 文章生成配置
+article:
+  # 输出语言
+  language: "zh-CN"
+  # 文章风格
+  style: "通俗易懂、深入浅出"
+  # 目标读者
+  audience: "对AI感兴趣的技术爱好者"
+  # 是否生成封面图
+  generate_cover: true
+  # 是否使用论文原图
+  use_paper_figures: true
+
+# 输出配置
+output:
+  dir: "./output"
+  save_markdown: true
+  save_html: true

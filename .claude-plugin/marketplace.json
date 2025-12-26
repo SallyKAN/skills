@@ -1,0 +1,22 @@
+{
+  "name": "sally-skills",
+  "owner": {
+    "name": "SallyKAN",
+    "email": ""
+  },
+  "metadata": {
+    "description": "Custom skills collection including paper translation and more",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "paper-translator-skills",
+      "description": "Academic paper to WeChat article translation pipeline with LLM-based generation, reflection refinement, and image processing",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./skills/paper-translator"
+      ]
+    }
+  ]
+}
