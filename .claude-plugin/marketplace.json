@@ -5,8 +5,8 @@
     "email": ""
   },
   "metadata": {
-    "description": "Custom skills collection including paper translation and more",
-    "version": "1.0.0"
+    "description": "Custom skills collection including paper translation, GTD processing, and more",
+    "version": "1.1.0"
   },
   "plugins": [
     {
@@ -16,6 +16,15 @@
       "strict": false,
       "skills": [
         "./skills/paper-translator"
+      ]
+    },
+    {
+      "name": "flomo-gtd-skills",
+      "description": "Process Flomo inbox notes using GTD methodology with browser automation and Todoist integration",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./skills/flomo-gtd"
       ]
     }
   ]
