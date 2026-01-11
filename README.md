@@ -32,6 +32,19 @@ python -m src.main https://arxiv.org/abs/1706.03762
 
 See [skills/paper-translator/SKILL.md](skills/paper-translator/SKILL.md) for full documentation.
 
+### flomo-gtd
+
+Process Flomo inbox notes using GTD (Getting Things Done) methodology. Automatically scrapes Flomo data via browser automation, analyzes each note with GTD principles, and optionally creates tasks in Todoist.
+
+- Browser automation scraping via Playwright
+- HTML export parsing (backup method)
+- GTD-based note categorization
+- Todoist integration for task creation
+
+**Usage:** Invoke the skill in Claude Code when you want to process your Flomo inbox.
+
+See [skills/flomo-gtd/SKILL.md](skills/flomo-gtd/SKILL.md) for full documentation.
+
 ## Installation
 
 ### Claude Code Plugin

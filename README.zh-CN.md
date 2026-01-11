@@ -32,7 +32,20 @@ python -m src.main https://arxiv.org/abs/1706.03762
 
 查看完整文档：[skills/paper-translator/SKILL.md](skills/paper-translator/SKILL.md)
 
-#### 主要特性
+### flomo-gtd / Flomo GTD 处理器
+
+使用 GTD（Getting Things Done）方法论处理 Flomo 收件箱笔记。通过浏览器自动化抓取 Flomo 数据，用 GTD 原则分析每条笔记，并可选择性地在 Todoist 中创建任务。
+
+- 通过 Playwright 进行浏览器自动化抓取
+- HTML 导出解析（备用方案）
+- 基于 GTD 的笔记分类
+- Todoist 集成创建任务
+
+**使用方法：** 在 Claude Code 中调用此技能来处理你的 Flomo 收件箱。
+
+查看完整文档：[skills/flomo-gtd/SKILL.md](skills/flomo-gtd/SKILL.md)
+
+#### 主要特性（paper-translator）
 
 🚀 **完整的自动化流程**
 - 支持 arXiv URL 和 PDF 直链
@@ -179,11 +192,15 @@ skills/
 ├── .claude-plugin/
 │   └── marketplace.json    # Claude Code 插件配置
 ├── skills/
-│   └── paper-translator/   # 论文翻译器技能
-│       ├── SKILL.md        # 技能文档（含 YAML frontmatter）
+│   ├── paper-translator/   # 论文翻译器技能
+│   │   ├── SKILL.md        # 技能文档（含 YAML frontmatter）
+│   │   ├── src/            # 源代码
+│   │   ├── prompts/        # 提示词模板
+│   │   ├── config/         # 配置文件
+│   │   └── requirements.txt
+│   └── flomo-gtd/          # Flomo GTD 处理器
+│       ├── SKILL.md        # 技能文档
 │       ├── src/            # 源代码
-│       ├── prompts/        # 提示词模板
-│       ├── config/         # 配置文件
 │       └── requirements.txt
 ├── template/
 │   └── SKILL.md            # 新技能模板
