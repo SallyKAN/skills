@@ -13,120 +13,9 @@ Skills 是包含指令、脚本和资源的文件夹，Claude 可以动态加载
 - [在 Claude 中使用 skills](https://support.claude.com/en/articles/12512180-using-skills-in-claude)
 - [如何创建自定义 skills](https://support.claude.com/en/articles/12512198-creating-custom-skills)
 
-## 可用的 Skills
-
-### paper-translator / 论文翻译器
-
-自动化的学术论文到微信文章的翻译流程。将学术论文（arXiv、PDF）转换为引人入胜的微信公众号文章，包含：
-
-- PDF 解析和图表提取
-- 基于 LLM 的文章生成（Claude/GPT）
-- 基于反思的质量优化
-- AI 封面图生成
-- 微信公众号发布
-
-**自然语言触发：** "帮我把这篇论文翻译成微信文章：https://arxiv.org/abs/1706.03762"
-
-查看完整文档：[skills/paper-translator/SKILL.md](skills/paper-translator/SKILL.md)
-
-### flomo-gtd / Flomo GTD 处理器
-
-使用 GTD（Getting Things Done）方法论处理 Flomo 收件箱笔记。通过浏览器自动化抓取 Flomo 数据，用 GTD 原则分析每条笔记，并可选择性地在 Todoist 中创建任务。
-
-- 通过 Playwright 进行浏览器自动化抓取
-- HTML 导出解析（备用方案）
-- 基于 GTD 的笔记分类
-- Todoist 集成创建任务
-
-**自然语言触发：** "帮我用 GTD 方法处理 Flomo 收件箱"
-
-查看完整文档：[skills/flomo-gtd/SKILL.md](skills/flomo-gtd/SKILL.md)
-
-### wechat-read-export / 微信读书笔记导出
-
-自动导出微信读书笔记并通过 AI 整理成知识卡片。自动抓取你的划线和想法，然后整理成结构化的知识卡片。
-
-- 浏览器自动化抓取微信读书网页版
-- Cookie 认证自动保存
-- AI 驱动的知识卡片生成
-- Markdown 输出格式
-
-**自然语言触发：** "帮我导出微信读书的笔记" 或 "帮我整理读书笔记成知识卡片"
-
-查看完整文档：[skills/wechat-read-export/SKILL.md](skills/wechat-read-export/SKILL.md)
-
-#### 主要特性（paper-translator）
-
-🚀 **完整的自动化流程**
-- 支持 arXiv URL 和 PDF 直链
-- 自动下载和解析论文内容
-- 提取论文中的图表和公式
-
-🤖 **智能写作系统**
-- 双引擎支持（Claude/GPT）
-- 通俗易懂的科普写作风格
-- 二次反思润色提升质量
-
-🎨 **自动配图**
-- 提取论文原图
-- AI 生成封面图
-- 支持自定义配图风格
-
-📱 **一键发布**
-- 直接发布到微信公众号草稿箱
-- Markdown 转微信 HTML 格式
-- 自动上传图片到素材库
-
-#### 快速开始
-
-```bash
-# 1. 克隆仓库
-git clone https://github.com/SallyKAN/skills.git
-cd skills/skills/paper-translator
-
-# 2. 安装依赖
-pip install -r requirements.txt
-
-# 3. 配置 API 密钥
-cp .env.example .env
-# 编辑 .env 文件，填入你的 API 密钥
-
-# 4. 运行翻译
-python -m src.main https://arxiv.org/abs/1706.03762
-
-# 指定引用量
-python -m src.main https://arxiv.org/abs/1706.03762 --citations 100000
-
-# 翻译并发布
-python -m src.main https://arxiv.org/abs/1706.03762 --publish
-```
-
-#### 配置说明
-
-编辑 `config/config.yaml`:
-
-```yaml
-# LLM 配置
-llm:
-  provider: "anthropic"  # anthropic 或 openai
-  model: "claude-sonnet-4-20250514"
-
-# 图片生成
-replicate:
-  model: "nano-banana-pro"
-
-# 文章配置
-article:
-  language: "zh-CN"
-  style: "通俗易懂、深入浅出"
-  audience: "对AI感兴趣的技术爱好者"
-  generate_cover: true
-  use_paper_figures: true
-```
-
 ## 安装方式
 
-### 方式 1：Claude Code 插件
+### 方式 1：Claude Code 插件（推荐）
 
 在 Claude Code 中注册此仓库为插件市场：
 
@@ -134,9 +23,11 @@ article:
 /plugin marketplace add SallyKAN/skills
 ```
 
-然后安装技能：
+然后安装所需技能：
 ```
 /plugin install paper-translator-skills@sally-skills
+/plugin install flomo-gtd@sally-skills
+/plugin install wechat-read-export@sally-skills
 ```
 
 ### 方式 2：手动安装
@@ -150,14 +41,86 @@ git clone https://github.com/SallyKAN/skills.git
    - `~/.claude/skills/` - 个人使用
    - `.claude/skills/` - 项目特定使用
 
-### 方式 3：直接使用源代码
+## 可用的 Skills
 
-```bash
-git clone https://github.com/SallyKAN/skills.git
-cd skills/skills/paper-translator
-pip install -r requirements.txt
-# 按照上面的快速开始运行
-```
+---
+
+### paper-translator / 论文翻译器
+
+自动化的学术论文到微信文章的翻译流程。将学术论文（arXiv、PDF）转换为引人入胜的微信公众号文章。
+
+**功能特性：**
+- PDF 解析和图表提取
+- 基于 LLM 的文章生成（Claude/GPT）
+- 基于反思的质量优化
+- AI 封面图生成
+- 微信公众号发布
+
+**快速开始：**
+
+1. 安装技能：
+   ```
+   /plugin install paper-translator-skills@sally-skills
+   ```
+
+2. 自然语言触发：
+   > "帮我把这篇论文翻译成微信文章：https://arxiv.org/abs/1706.03762"
+
+查看完整文档：[skills/paper-translator/SKILL.md](skills/paper-translator/SKILL.md)
+
+---
+
+### flomo-gtd / Flomo GTD 处理器
+
+使用 GTD（Getting Things Done）方法论处理 Flomo 收件箱笔记。
+
+**功能特性：**
+- 通过 Playwright 进行浏览器自动化抓取
+- HTML 导出解析（备用方案）
+- 基于 GTD 的笔记分类
+- Todoist 集成创建任务
+
+**快速开始：**
+
+1. 安装技能：
+   ```
+   /plugin install flomo-gtd@sally-skills
+   ```
+
+2. 自然语言触发：
+   > "帮我用 GTD 方法处理 Flomo 收件箱"
+
+查看完整文档：[skills/flomo-gtd/SKILL.md](skills/flomo-gtd/SKILL.md)
+
+---
+
+### wechat-read-export / 微信读书笔记导出
+
+自动导出微信读书笔记并通过 AI 整理成知识卡片。
+
+**功能特性：**
+- 浏览器自动化抓取微信读书网页版
+- Cookie 认证自动保存
+- AI 驱动的知识卡片生成
+- Markdown 输出格式
+
+**快速开始：**
+
+1. 安装技能：
+   ```
+   /plugin install wechat-read-export@sally-skills
+   ```
+
+2. 自然语言触发：
+   > "帮我导出微信读书的笔记"
+
+   或
+
+   > "帮我整理读书笔记成知识卡片"
+
+查看完整文档：[skills/wechat-read-export/SKILL.md](skills/wechat-read-export/SKILL.md)
+
+---
 
 ## 创建新的 Skills
 
@@ -203,20 +166,8 @@ skills/
 │   └── marketplace.json    # Claude Code 插件配置
 ├── skills/
 │   ├── paper-translator/   # 论文翻译器技能
-│   │   ├── SKILL.md        # 技能文档（含 YAML frontmatter）
-│   │   ├── src/            # 源代码
-│   │   ├── prompts/        # 提示词模板
-│   │   ├── config/         # 配置文件
-│   │   └── requirements.txt
 │   ├── flomo-gtd/          # Flomo GTD 处理器
-│   │   ├── SKILL.md        # 技能文档
-│   │   ├── src/            # 源代码
-│   │   └── requirements.txt
 │   └── wechat-read-export/ # 微信读书笔记导出
-│       ├── SKILL.md        # 技能文档
-│       ├── src/            # 源代码
-│       ├── config/         # 配置文件
-│       └── requirements.txt
 ├── template/
 │   └── SKILL.md            # 新技能模板
 ├── README.md               # 英文说明
@@ -234,13 +185,6 @@ skills/
 4. 推送到分支 (`git push origin feature/amazing-skill`)
 5. 开启 Pull Request
 
-### 贡献 Skill 的建议
-
-- 保持 skill 专注于单一任务
-- 提供清晰的文档和示例
-- 测试 skill 在不同场景下的表现
-- 遵循现有 skill 的格式规范
-
 ## 常见问题
 
 ### Q: Skill 和 Prompt 有什么区别？
@@ -253,10 +197,6 @@ A:
 1. 在 Claude Code 中使用 `/skill my-skill-name` 激活
 2. 观察 Claude 的响应
 3. 根据需要调整 SKILL.md 中的指令
-
-### Q: Skill 支持哪些编程语言？
-
-A: Skill 本身是语言无关的，但可以包含任何语言的脚本。常见的有 Python、JavaScript、Shell 等。
 
 ### Q: 如何分享我的 Skill？
 
@@ -277,6 +217,6 @@ MIT License
 
 ---
 
-⭐ 如果这个项目对你有帮助，欢迎 Star！
+如果这个项目对你有帮助，欢迎 Star！
 
-📧 有问题或建议？欢迎提 [Issue](https://github.com/SallyKAN/skills/issues)
+有问题或建议？欢迎提 [Issue](https://github.com/SallyKAN/skills/issues)
