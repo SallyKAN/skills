@@ -25,10 +25,7 @@ Automated academic paper to WeChat article translation pipeline. Converts academ
 - AI cover image generation
 - WeChat Official Account publishing
 
-**Usage:**
-```bash
-python -m src.main https://arxiv.org/abs/1706.03762
-```
+**Natural Language Trigger:** "Help me translate this paper to a WeChat article: https://arxiv.org/abs/1706.03762"
 
 See [skills/paper-translator/SKILL.md](skills/paper-translator/SKILL.md) for full documentation.
 
@@ -41,9 +38,22 @@ Process Flomo inbox notes using GTD (Getting Things Done) methodology. Automatic
 - GTD-based note categorization
 - Todoist integration for task creation
 
-**Usage:** Invoke the skill in Claude Code when you want to process your Flomo inbox.
+**Natural Language Trigger:** "Help me process my Flomo inbox with GTD"
 
 See [skills/flomo-gtd/SKILL.md](skills/flomo-gtd/SKILL.md) for full documentation.
+
+### wechat-read-export
+
+Export WeChat Read (微信读书) notes and generate AI-powered knowledge cards. Automatically scrapes your reading highlights and thoughts, then organizes them into structured knowledge cards.
+
+- Browser automation for WeChat Read web scraping
+- Cookie-based authentication with auto-save
+- AI-powered knowledge card generation
+- Markdown output format
+
+**Natural Language Trigger:** "Help me export my WeChat Read notes" or "Organize my reading notes into knowledge cards"
+
+See [skills/wechat-read-export/SKILL.md](skills/wechat-read-export/SKILL.md) for full documentation.
 
 ## Installation
 

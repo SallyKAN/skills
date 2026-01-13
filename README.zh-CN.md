@@ -25,10 +25,7 @@ Skills 是包含指令、脚本和资源的文件夹，Claude 可以动态加载
 - AI 封面图生成
 - 微信公众号发布
 
-**使用方法：**
-```bash
-python -m src.main https://arxiv.org/abs/1706.03762
-```
+**自然语言触发：** "帮我把这篇论文翻译成微信文章：https://arxiv.org/abs/1706.03762"
 
 查看完整文档：[skills/paper-translator/SKILL.md](skills/paper-translator/SKILL.md)
 
@@ -41,9 +38,22 @@ python -m src.main https://arxiv.org/abs/1706.03762
 - 基于 GTD 的笔记分类
 - Todoist 集成创建任务
 
-**使用方法：** 在 Claude Code 中调用此技能来处理你的 Flomo 收件箱。
+**自然语言触发：** "帮我用 GTD 方法处理 Flomo 收件箱"
 
 查看完整文档：[skills/flomo-gtd/SKILL.md](skills/flomo-gtd/SKILL.md)
+
+### wechat-read-export / 微信读书笔记导出
+
+自动导出微信读书笔记并通过 AI 整理成知识卡片。自动抓取你的划线和想法，然后整理成结构化的知识卡片。
+
+- 浏览器自动化抓取微信读书网页版
+- Cookie 认证自动保存
+- AI 驱动的知识卡片生成
+- Markdown 输出格式
+
+**自然语言触发：** "帮我导出微信读书的笔记" 或 "帮我整理读书笔记成知识卡片"
+
+查看完整文档：[skills/wechat-read-export/SKILL.md](skills/wechat-read-export/SKILL.md)
 
 #### 主要特性（paper-translator）
 
@@ -198,9 +208,14 @@ skills/
 │   │   ├── prompts/        # 提示词模板
 │   │   ├── config/         # 配置文件
 │   │   └── requirements.txt
-│   └── flomo-gtd/          # Flomo GTD 处理器
+│   ├── flomo-gtd/          # Flomo GTD 处理器
+│   │   ├── SKILL.md        # 技能文档
+│   │   ├── src/            # 源代码
+│   │   └── requirements.txt
+│   └── wechat-read-export/ # 微信读书笔记导出
 │       ├── SKILL.md        # 技能文档
 │       ├── src/            # 源代码
+│       ├── config/         # 配置文件
 │       └── requirements.txt
 ├── template/
 │   └── SKILL.md            # 新技能模板
