@@ -194,7 +194,7 @@ class ImageGenerator:
         self,
         title: str,
         topic: str = "AI",
-        style: str = "tech",
+        style: str = "chalkboard",
     ) -> GeneratedImage:
         """
         生成文章封面图
@@ -202,27 +202,38 @@ class ImageGenerator:
         Args:
             title: 文章标题
             topic: 主题
-            style: 风格
+            style: 风格 (chalkboard/tech/minimal/academic/creative)
 
         Returns:
             生成的封面图
         """
         # 构建封面prompt
         style_prompts = {
+            "chalkboard": (
+                "黑板报风格封面图，黑色黑板背景，彩色粉笔手绘风格。"
+                "信息精简，突出关键词与核心概念，多留白，易于一眼抓住重点。"
+                "加入少量简洁的卡通元素、图标或名人画像，增强趣味性和视觉记忆。"
+                "所有图像和文字必须使用彩色粉笔绘制，没有写实风格图画元素。"
+                "chalk drawing style, colorful chalk on blackboard, hand-drawn illustration"
+            ),
             "tech": "futuristic technology, digital art, abstract neural network visualization, blue and purple gradient",
             "minimal": "minimalist design, clean white background, simple geometric shapes",
             "academic": "academic illustration, scientific diagram style, professional",
             "creative": "creative abstract art, colorful, dynamic composition",
         }
 
-        style_desc = style_prompts.get(style, style_prompts["tech"])
+        style_desc = style_prompts.get(style, style_prompts["chalkboard"])
 
-        prompt = f"Article cover image about {topic}: {title}. {style_desc}"
+        # 黑板报风格使用专用prompt格式
+        if style == "chalkboard":
+            prompt = f"根据这个自媒体标题：{title} 生成一张黑板报风格的封面图。{style_desc}"
+        else:
+            prompt = f"Article cover image about {topic}: {title}. {style_desc}"
 
         # 封面图使用16:9比例
         config = ImageConfig(width=1200, height=675)
 
-        return self.generate(prompt, config, enhance_prompt=True)
+        return self.generate(prompt, config, enhance_prompt=False if style == "chalkboard" else True)
 
     def batch_generate(
         self,
