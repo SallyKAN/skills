@@ -1,0 +1,40 @@
+# 微信读书笔记导出配置文件
+
+# 微信读书设置
+weread:
+  # Cookie 存储路径
+  cookie_path: ~/.wechat-read-export/cookies.json
+  # 是否使用无头模式（首次登录需要设为 false）
+  headless: false
+
+# 处理设置
+processing:
+  # 处理模式: full(全量) / selective(按书籍) / incremental(增量)
+  mode: full
+  # 指定书籍 ID（selective 模式使用）
+  books: []
+
+# 输出设置
+output:
+  # 输出目录
+  directory: ./output
+  # 输出格式: markdown / anki (暂只支持 markdown)
+  format: markdown
+
+# AI 设置
+ai:
+  # AI 提供商: anthropic / openai
+  provider: anthropic
+  # 模型名称
+  model: claude-sonnet-4-20250514
+  # 是否启用 AI 生成
+  enabled: true
+
+# 知识卡片设置
+card:
+  # 是否包含封面图片
+  include_cover: true
+  # 是否包含章节信息
+  include_chapter: true
+  # 是否包含时间戳
+  include_timestamp: true

@@ -1,0 +1,15 @@
+# 微信读书笔记导出工具依赖
+
+# 浏览器自动化
+playwright>=1.40.0
+
+# 配置文件解析
+pyyaml>=6.0
+
+# AI 客户端
+anthropic>=0.18.0
+
+# 可选依赖（后续扩展）
+# openai>=1.0.0  # OpenAI 支持
+# genanki>=0.13.0  # Anki 卡片生成
+# notion-client>=2.0.0  # Notion 集成
